@@ -1,57 +1,46 @@
-// admin.js (Handles admin panel functionality)
-
-function updateTimers() {
-    ["room1", "room2", "room3"].forEach(room => {
-        db.ref(`timers/${room}`).on("value", (snapshot) => {
-            if (snapshot.exists()) {
-                document.getElementById(`time-${room}`).textContent = formatTime(snapshot.val());
-            }
-        });
-    });
-}
-
-function resetTimer(room) {
-    db.ref(`timers/${room}`).set(0);
-}
-
-function stopTimer(room) {
-    db.ref(`timers/${room}`).set(null);
-}
-
-function setTime(room) {
-    const minutes = document.getElementById(`set-time-${room}`).value;
-    if (minutes) {
-        db.ref(`timers/${room}`).set(minutes * 60);
+document.addEventListener("DOMContentLoaded", function () {
+    if (!window.db) {
+        console.error("Firebase database not initialized!");
+        return;
     }
-}
 
-function updateCallRequests() {
-    ["room1", "room2", "room3"].forEach(room => {
-        db.ref(`calls/${room}`).on("value", (snapshot) => {
-            document.getElementById(`call-${room}`).textContent = snapshot.exists() ? snapshot.val() : 0;
+    const roomsRef = db.ref("rooms");
+
+    function updateTimers() {
+        roomsRef.once("value", (snapshot) => {
+            const rooms = snapshot.val();
+            if (!rooms) return;
+
+            Object.keys(rooms).forEach((room) => {
+                const timerElement = document.getElementById(`timer-${room}`);
+                if (timerElement) {
+                    timerElement.textContent = rooms[room].timeRemaining;
+                }
+            });
         });
-    });
-}
+    }
 
-function generateQRCodes() {
-    const qrContainer = document.getElementById("qrCodes");
-    ["room1", "room2", "room3"].forEach(room => {
-        const div = document.createElement("div");
-        div.innerHTML = `<h3>${room.toUpperCase()}</h3><div id='qr-${room}'></div>`;
-        qrContainer.appendChild(div);
-        new QRCode(document.getElementById(`qr-${room}`), window.location.origin + `/${room}.html`);
-    });
-}
+    function setRoomTime(room, timeInSeconds) {
+        db.ref(`rooms/${room}`).update({ timeRemaining: timeInSeconds });
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateTimers();
-    updateCallRequests();
-    generateQRCodes();
+    function resetRoom(room) {
+        db.ref(`rooms/${room}`).update({ timeRemaining: 3600 }); // Default to 1 hour
+    }
+
+    function stopRoom(room) {
+        db.ref(`rooms/${room}`).update({ paused: true });
+    }
+
+    roomsRef.on("value", updateTimers);
+
+    document.getElementById("reset-room-1").addEventListener("click", () => resetRoom("room1"));
+    document.getElementById("reset-room-2").addEventListener("click", () => resetRoom("room2"));
+    document.getElementById("reset-room-3").addEventListener("click", () => resetRoom("room3"));
+
+    document.getElementById("stop-room-1").addEventListener("click", () => stopRoom("room1"));
+    document.getElementById("stop-room-2").addEventListener("click", () => stopRoom("room2"));
+    document.getElementById("stop-room-3").addEventListener("click", () => stopRoom("room3"));
 });
 
-// Helper function for formatting time
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
