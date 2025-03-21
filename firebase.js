@@ -1,13 +1,22 @@
-// firebase.js (Handles real-time updates)
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+
+// Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyD790PK-Gnu7xRtmATApIQ54vhPZFWTJTc",
+    authDomain: "escape-room-timer-62fb0.firebaseapp.com",
+    databaseURL: "https://escape-room-timer-62fb0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "escape-room-timer-62fb0",
+    storageBucket: "escape-room-timer-62fb0.firebasestorage.app",
+    messagingSenderId: "331352126718",
+    appId: "1:331352126718:web:e03f37aaf28c2dc9e2a1af",
+    measurementId: "G-B8ZER9M2DB"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Export the database to use in other files
+export { db };
