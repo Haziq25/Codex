@@ -1,8 +1,4 @@
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-
-// Your Firebase configuration
+// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyD790PK-Gnu7xRtmATApIQ54vhPZFWTJTc",
     authDomain: "escape-room-timer-62fb0.firebaseapp.com",
@@ -15,8 +11,5 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// Export the database to use in other files
-export { db };
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
