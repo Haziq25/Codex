@@ -49,10 +49,13 @@
     <div id="qrCodes"></div>
 
 
-    <script type="module" src="firebase.js"></script>
-    <script type="module" src="admin.js"></script>
-    <script type="module" src="room.js"></script>
-    <script src="firebase.js"></script>
-    <script src="admin.js"></script>
+    <!-- Firebase SDKs (These must come before your scripts) -->
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
+
+<!-- Your JavaScript files -->
+<script src="firebase.js"></script>
+<script src="admin.js"></script>
+<script src="room.js"></script>
 </body>
 </html>
