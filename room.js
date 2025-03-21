@@ -1,4 +1,7 @@
 // room.js (Handles player page timers and call requests)
+
+import { db } from "./firebase.js";
+
 function initializeTimer(room) {
     const timerDisplay = document.getElementById("timer");
     const callButton = document.getElementById("call-help");
