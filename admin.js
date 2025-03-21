@@ -1,5 +1,4 @@
 // admin.js (Handles admin panel functionality)
-import { db } from "./firebase.js";
 
 function updateTimers() {
     ["room1", "room2", "room3"].forEach(room => {
