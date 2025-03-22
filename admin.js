@@ -42,5 +42,3 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("stop-room-2").addEventListener("click", () => stopRoom("room2"));
     document.getElementById("stop-room-3").addEventListener("click", () => stopRoom("room3"));
 });
-
-}
