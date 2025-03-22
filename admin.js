@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Firebase database not initialized!");
         return;
     }
-
+    
     const roomsRef = db.ref("rooms");
 
     function updateTimers() {
