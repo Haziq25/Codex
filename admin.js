@@ -1,8 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
     if (!window.db) {
-        console.error("Firebase database not initialized!");
-        return;
+        console.error("Firebase is not initialized yet. Retrying in 1 second...");
+        setTimeout(initAdmin, 1000);
+    } else {
+        initAdmin();
     }
+});
+
+function initAdmin() {
+    console.log("✅ Firebase loaded in admin.js");
+    
+    const db = window.db; // Ensure we use the Firebase database
+
+    // Example of how to use the database
+    db.ref("/some-path").once("value").then(snapshot => {
+        console.log("Database is working:", snapshot.val());
+    }).catch(error => {
+        console.error("Database error:", error);
+    });
+
+    // Your admin panel logic here...
+}
+
 
     const roomsRef = db.ref("rooms");
 
