@@ -1,76 +1,36 @@
-<!-- index.html (Admin Panel) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escape Room Admin</title>
+    <title>PERPLEXITY</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <h1>Escape Room Admin Panel</h1>
-    
-    <div id="rooms">
-        <div class="room" id="room1">
-            <h2>Room 1</h2>
-            <p>Time Left: <span id="time-room1">00:00</span></p>
-            <button onclick="resetTimer('room1')">Reset</button>
-            <button onclick="stopTimer('room1')">Stop</button>
-            <input type="number" id="set-time-room1" placeholder="Set time (min)">
-            <button onclick="setTime('room1')">Set Time</button>
-            <p>Call Requests: <span id="call-room1">0</span></p>
-        </div>
-        
-        <div class="room" id="room2">
-            <h2>Room 2</h2>
-            <p>Time Left: <span id="time-room2">00:00</span></p>
-            <button onclick="resetTimer('room2')">Reset</button>
-            <button onclick="stopTimer('room2')">Stop</button>
-            <input type="number" id="set-time-room2" placeholder="Set time (min)">
-            <button onclick="setTime('room2')">Set Time</button>
-            <p>Call Requests: <span id="call-room2">0</span></p>
-        </div>
-        
-        <div class="room" id="room3">
-            <h2>Room 3</h2>
-            <p>Time Left: <span id="time-room3">00:00</span></p>
-            <button onclick="resetTimer('room3')">Reset</button>
-            <button onclick="stopTimer('room3')">Stop</button>
-            <input type="number" id="set-time-room3" placeholder="Set time (min)">
-            <button onclick="setTime('room3')">Set Time</button>
-            <p>Call Requests: <span id="call-room3">0</span></p>
-        </div>
-    </div>
-    
-    <h2>Room QR Codes</h2>
-    <div id="qrCodes"></div>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyD790PK-Gnu7xRtmATApIQ54vhPZFWTJTc",
-    authDomain: "escape-room-timer-62fb0.firebaseapp.com",
-    databaseURL: "https://escape-room-timer-62fb0-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "escape-room-timer-62fb0",
-    storageBucket: "escape-room-timer-62fb0.firebasestorage.app",
-    messagingSenderId: "331352126718",
-    appId: "1:331352126718:web:e03f37aaf28c2dc9e2a1af",
-    measurementId: "G-B8ZER9M2DB"
-  };
+    <h1>TIME REMAINING:</h1>
+    <div id="timer">00:00</div>
+    <button id="startBtn">Start Timer</button>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src="firebase.js"></script>
-    <script src="admin.js"></script>
+    <h2>Hints</h2>
+<button onclick="revealHint(1)">Hint 1</button>
+<button onclick="revealHint(2)">Hint 2</button>
+<button onclick="revealHint(3)">Hint 3</button>
+
+<div id="hint1" class="hint">Does this go on top
+    <img src="hint1.jpg" alt="Hint 1 Image" class="hint-image">
+    or bottom.
+</div>
+<div id="hint2" class="hint">
+    <img src="hint2.jpg" alt="Hint 2 Image" class="hint-image">
+</div>
+<div id="hint3" class="hint">
+    <img src="hint3.jpg" alt="Hint 3 Image" class="hint-image">
+</div>
+    <!-- Admin Controls -->
+    <button id="adminUnlockBtn">Admin</button>
+    <button id="resetBtn" class="hidden">Reset</button>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
