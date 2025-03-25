@@ -1,51 +1,110 @@
-/* styles.css (General styling for all pages) */
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    background-image: url("double-bubble-dark.png");
+    color: #00ffcc;
     text-align: center;
-    background-color: #B2AC67;
+    margin: 0;
     padding: 20px;
 }
 
-h1, h2 {
-    color: #333;
+/* Glowing Timer */
+#timer {
+    font-size: 3.5em;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 15px #ff00ff, 0px 0px 20px #00ffff;
+    margin: 20px 0;
 }
 
-#rooms {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.room {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
-}
-
+/* Buttons - Neon Glow */
 button {
-    background: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 12px 20px;
+    margin: 10px;
+    border: 2px solid transparent;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
     border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.8);
+    text-transform: uppercase;
 }
 
-button:hover {
-    background: #0056b3;
+#startBtn {
+    background: linear-gradient(90deg, #00ffcc, #0066ff);
+    color: black;
 }
 
-input[type="number"] {
-    width: 80px;
-    padding: 5px;
-    margin: 5px;
-    text-align: center;
+#startBtn:hover {
+    background: linear-gradient(90deg, #0066ff, #00ffcc);
+    box-shadow: 0px 0px 15px #00ffcc;
 }
 
-#qrCodes div {
+#resetBtn {
+    background: linear-gradient(90deg, #ff0066, #ff3300);
+    color: black;
+}
+
+#resetBtn:hover {
+    background: linear-gradient(90deg, #ff3300, #ff0066);
+    box-shadow: 0px 0px 15px #ff0066;
+}
+
+#adminUnlockBtn {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+#adminUnlockBtn {
+    background: linear-gradient(90deg, #9900ff, #ff00ff);
+    color: black;
+}
+
+#adminUnlockBtn:hover {
+    background: linear-gradient(90deg, #ff00ff, #9900ff);
+    box-shadow: 0px 0px 15px #ff00ff;
+}
+
+/* Hints - Futuristic Glow */
+.hint {
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px auto;
+    max-width: 400px;
+    font-size: 1.3em;
+    text-shadow: 0px 0px 10px rgba(0, 255, 204, 0.8);
+    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.5);
+}
+
+/* Hint Images - Cyberpunk Borders */
+.hint img {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid #00ffcc;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 255, 204, 0.7);
     margin-top: 10px;
+}
+
+/* Hidden Elements */
+.hidden {
+    display: none;
+}
+
+/* Cyber Fractal Glow Effect */
+@keyframes fractalGlow {
+    0% { text-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #00ffff; }
+    50% { text-shadow: 0px 0px 15px #00ffff, 0px 0px 25px #ff00ff; }
+    100% { text-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #00ffff; }
+}
+
+#timer {
+    animation: fractalGlow 2s infinite alternate;
 }
